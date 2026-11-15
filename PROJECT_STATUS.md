@@ -43,10 +43,11 @@
 - Camera-vs-geometry collision is AABB-based and approximate
 
 ## Git commits
-None yet on this branch — initial commit pending.
+- 5f4f6d6 feat: initialize Three.js game foundation with city, controls, systems and assets (44 files)
+Pushed to origin/arena/c586ca84-from-300 (verified: remote ref 5f4f6d6 matches local).
 
 ## Remaining tasks
-- Commit Phase 1 foundation and push to origin/arena/c586ca84-from-300
-- Phase 2: polish player system + interactions
-- Phase 3: interiors and district streaming
+- Phase 2: polish player system + interactions (enter/exit buildings, object interaction prompts)
+- Phase 3: interiors and district streaming, LOD
+- Job system, smartphone UI, campaign/sandbox, stock market, real estate, traffic, NPCs, Mercury 3 AI
 - Continue roadmap per the master prompt
