@@ -37,19 +37,43 @@ export class Player {
   _buildMesh() {
     const group = new THREE.Group();
 
-    const bodyGeo = new THREE.CapsuleGeometry(0.35, 1.1, 4, 8);
-    const bodyMat = new THREE.MeshStandardMaterial({ color: 0x3b82f6 });
+    // Shirt.
+    const bodyGeo = new THREE.CapsuleGeometry(0.34, 1.0, 6, 10);
+    const bodyMat = new THREE.MeshStandardMaterial({ color: 0xe74c3c, roughness: 0.8 });
     const body = new THREE.Mesh(bodyGeo, bodyMat);
-    body.position.y = 0.9;
+    body.position.y = 0.95;
     body.castShadow = true;
     group.add(body);
 
-    const headGeo = new THREE.SphereGeometry(0.2, 8, 8);
-    const headMat = new THREE.MeshStandardMaterial({ color: 0xe0ac69 });
+    // Trousers.
+    const legGeo = new THREE.CapsuleGeometry(0.22, 0.9, 4, 8);
+    const legMat = new THREE.MeshStandardMaterial({ color: 0x2c3e50, roughness: 0.9 });
+    const lleg = new THREE.Mesh(legGeo, legMat);
+    lleg.position.set(-0.16, 0.45, 0);
+    lleg.castShadow = true;
+    group.add(lleg);
+    const rleg = new THREE.Mesh(legGeo, legMat);
+    rleg.position.set(0.16, 0.45, 0);
+    rleg.castShadow = true;
+    group.add(rleg);
+
+    // Head.
+    const headGeo = new THREE.SphereGeometry(0.21, 10, 10);
+    const headMat = new THREE.MeshStandardMaterial({ color: 0xe0ac69, roughness: 0.9 });
     const head = new THREE.Mesh(headGeo, headMat);
-    head.position.y = 1.75;
+    head.position.y = 1.78;
     head.castShadow = true;
     group.add(head);
+
+    // Hair.
+    const hair = new THREE.Mesh(
+      new THREE.SphereGeometry(0.22, 10, 10),
+      new THREE.MeshStandardMaterial({ color: 0x3e2723, roughness: 0.9 })
+    );
+    hair.position.set(0, 1.82, 0.11);
+    hair.scale.set(1, 0.85, 1.1);
+    hair.castShadow = true;
+    group.add(hair);
 
     return group;
   }

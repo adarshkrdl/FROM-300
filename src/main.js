@@ -55,10 +55,15 @@ function init() {
   renderer = new Renderer({ canvas });
   renderer.setSize(window.innerWidth, window.innerHeight);
 
-  const ambient = new THREE.AmbientLight(0xffffff, 0.5);
+  // Hemisphere light for sky/ground color.
+  const hemi = new THREE.HemisphereLight(0x87ceeb, 0x4a5a43, 0.6);
+  scene.add(hemi);
+  window.hemi = hemi;
+
+  const ambient = new THREE.AmbientLight(0xffffff, 0.35);
   scene.add(ambient);
 
-  const sun = new THREE.DirectionalLight(0xffffff, 1.2);
+  const sun = new THREE.DirectionalLight(0xffffff, 1.1);
   sun.position.set(60, 80, 40);
   sun.castShadow = true;
   sun.shadow.mapSize.width = 2048;
@@ -73,6 +78,7 @@ function init() {
 
   window.sun = sun;
   window.ambient = ambient;
+  window.hemi = hemi;
 
   cameraSystem = new CameraSystem({ domElement: canvas });
   cameraSystem.setSize(window.innerWidth, window.innerHeight);
@@ -469,18 +475,27 @@ function updateSimulation(deltaSeconds) {
 function updateLighting() {
   const sun = window.sun;
   const ambient = window.ambient;
+  const hemi = window.hemi;
   const lf = Math.max(0, timeSystem.lightFactor);
   const isNight = timeSystem.isNight;
 
-  ambient.intensity = 0.35 + 0.45 * lf;
-  sun.intensity = 1.4 * lf + 0.1;
+  ambient.intensity = 0.25 + 0.5 * lf;
+  sun.intensity = 1.5 * lf + 0.05;
+  sun.color.setHex(isNight ? 0x7080a0 : 0xffffff);
   sun.position.x = Math.sin((timeSystem.time % (24 * 60)) / (24 * 60) * Math.PI * 2 - Math.PI / 2) * 100;
   sun.position.y = Math.max(5, 60 * lf + 10);
   sun.position.z = 40;
 
+  // Hemisphere sky/ground colors by time of day.
+  const sky = isNight ? 0x1a1f3a : 0x87ceeb;
+  const ground = isNight ? 0x181818 : 0x4a5a43;
+  hemi.color.setHex(sky);
+  hemi.groundColor.setHex(ground);
+  hemi.intensity = 0.5 + 0.4 * lf;
+
   const fogColor = isNight ? 0x05070f : 0xb8d4f0;
   scene.fog.color.setHex(fogColor);
-  scene.background.color.setHex(isNight ? 0x0b1020 : 0x87ceeb);
+  scene.background.color.setHex(isNight ? 0x080a14 : 0x87ceeb);
 
   if (interior) interior.setTimeOfDay(isNight);
 }
