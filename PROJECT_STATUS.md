@@ -26,7 +26,8 @@
 - UI: main menu, HUD (money/time/day/status), pause menu, notifications, mobile controls
 - Save system: IndexedDB, 5 slots, manual + auto-save (~2 min), versioned format, all systems serialized
 - Asset loader: GLTFLoader caching + procedural fallback on load failure
-- Production build verified (~666 KB); dev server verified serving HTTP 200
+- Production build verified (~671 KB); dev server verified serving HTTP 200
+- City visuals rebuilt: detailed buildings with roofs/windows/doors, district color palettes, grass patches, road markings, streetlights, benches, dustbins, hemisphere + day/night lighting
 - Documentation: README, MIT LICENSE, CONTRIBUTING, CHANGELOG, PROJECT_STATUS, ASSET_INVENTORY
 
 ## Pending features
@@ -41,7 +42,7 @@
 - More assets: shops, hospitals, schools, banks, ATMs, petrol pumps, factories
 
 ## Known issues
-- Bundle ~666 KB unminified — above 500 KB guideline; code-splitting recommended
+- Bundle ~671 KB unminified — above 500 KB guideline; code-splitting recommended
 - GLB asset loading is asynchronous; procedural geometry renders until assets arrive
 - No audio yet
 - Mobile layout not tested on a real device (manual steps documented)
