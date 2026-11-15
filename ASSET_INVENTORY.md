@@ -50,7 +50,7 @@ All third-party assets used in the game. Original game code is MIT licensed; ass
 | Files | `city-kit.glb` (2,503,672 B) |
 | File size | ~2.5 MB |
 | Optimization | None needed; scaled at runtime to fit district blocks |
-| Integration status | Integrated — one landmark building placed per district block |
+| Integration status | Integrated — one landmark building placed per district block; vehicles placed as traffic along roads; character used as player model; trees placed along district footpaths |
 
 ## Totals
 
